@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OpenSourceMafiaMobile</string>
+    <string name="hello_world">Hello world! I am string of text. Look at me go! Wahooo. Cease to exist. Given my goodbyes. Drive my car into the ocean.</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="fragment_display_message">Example Fragment Message</string>
+    <string name="action_search">Search Players</string>
+    <string name="input_action">Input Action</string>
+    <string name="play_by_play">Events</string>
+    
+    
+    
+
+</resources>
