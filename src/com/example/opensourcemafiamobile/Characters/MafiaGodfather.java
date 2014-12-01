@@ -5,6 +5,13 @@ import java.util.Scanner;
 import com.example.opensourcemafiamobile.*;
 
 public class MafiaGodfather extends AbstractPlayer {
+	
+	private MainActivity main;
+
+    // Public getter
+    public MafiaGodfather(MainActivity main) {
+        this.main = main;
+    }
 
     public MafiaGodfather(String playerName) {
         this.setAffiliation( "Mafia" );
@@ -25,7 +32,7 @@ public class MafiaGodfather extends AbstractPlayer {
         String candidateName;
         Scanner in = new Scanner( System.in );
 
-        System.out.println( getPlayerName() + ": Enter name of player to kill." );
+        main.outputText( getPlayerName() + ": Enter name of player to kill." );
         candidateName = in.nextLine();
 
         for ( int i = 0; i < NightlyActions.getTownList().size(); i++ ) {

@@ -4,6 +4,13 @@ import java.util.Scanner;
 import com.example.opensourcemafiamobile.*;
 
 public class MafiaMafioso extends AbstractPlayer {
+	
+	private MainActivity main;
+
+    // Public getter
+    public MafiaMafioso(MainActivity main) {
+        this.main = main;
+    }
 
     public MafiaMafioso(String playerName) {
         this.setAffiliation( "Mafia" );
@@ -25,7 +32,7 @@ public class MafiaMafioso extends AbstractPlayer {
         Scanner in = new Scanner( System.in );
 
 
-        System.out.println( getPlayerName() + ": Enter name of player to kill." );
+        main.outputText( getPlayerName() + ": Enter name of player to kill." );
         candidateName = in.nextLine();
         
         for ( int i = 0; i < NightlyActions.getTownList().size(); i++ ) {

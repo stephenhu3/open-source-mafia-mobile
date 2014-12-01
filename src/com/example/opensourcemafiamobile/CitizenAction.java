@@ -91,13 +91,13 @@
 //
 //            if ( citizenToPerform.getActionAmmo() > 0 ) {
 //                citizenToPerform.setBulletproof( true );
-//                System.out.println( "You are bulletproof for tonight." );
+//                main.outputText( "You are bulletproof for tonight." );
 //                citizenToPerform.setActionAmmo( citizenToPerform.getActionAmmo() - 1 );
 //
-//                System.out.println( "You have " + citizenToPerform.getActionAmmo() + " bulletproof vests left." );
+//                main.outputText( "You have " + citizenToPerform.getActionAmmo() + " bulletproof vests left." );
 //            } else {
 //                citizenToPerform.setBulletproof( false );
-//                System.out.println( "No bulletproof vests are left." );
+//                main.outputText( "No bulletproof vests are left." );
 //            }
 //
 //            //System.exit( 0 );
@@ -105,7 +105,7 @@
 //            //b1.setEnabled( false );
 //            //b3.setEnabled( true );
 //            citizenToPerform.setBulletproof( false );
-//            System.out.println( "You have " + citizenToPerform.getActionAmmo() + " bulletproof vests left." );
+//            main.outputText( "You have " + citizenToPerform.getActionAmmo() + " bulletproof vests left." );
 //            //System.exit( 0 );
 //        }
 //    }
@@ -143,7 +143,7 @@
 //    }
 //
 //    public void runAction() {
-//        System.out.println( citizenToPerform.getPlayerName() + ": Pick your wardrobe."  );
+//        main.outputText( citizenToPerform.getPlayerName() + ": Pick your wardrobe."  );
 //        createAndShowGUI( citizenToPerform );
 //    }
 //}

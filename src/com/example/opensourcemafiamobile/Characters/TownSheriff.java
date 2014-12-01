@@ -5,6 +5,13 @@ import java.util.Scanner;
 import com.example.opensourcemafiamobile.*;
 
 public class TownSheriff extends AbstractPlayer {
+	
+	private MainActivity main;
+
+    // Public getter
+    public TownSheriff(MainActivity main) {
+        this.main = main;
+    }
 
     // Name of target to investigate (displayed at end of each round since Framer can skew results)
     String target;
@@ -30,7 +37,7 @@ public class TownSheriff extends AbstractPlayer {
     public void nightAction() {
         @SuppressWarnings("resource")
         Scanner in = new Scanner( System.in );
-        System.out.println( getPlayerName() + ": Enter name of player to investigate." );
+        main.outputText( getPlayerName() + ": Enter name of player to investigate." );
         target = in.nextLine();
     }
     
@@ -42,7 +49,7 @@ public class TownSheriff extends AbstractPlayer {
         for ( int i = 0; i < NightlyActions.getTownList().size(); i++ ) {
 
             if ( target.equals( ( NightlyActions.getTownList().get( i ) ).getPlayerName() ) ) {
-                System.out.println( target + " was investigated and was discovered to be from the "
+                main.outputText( target + " was investigated and was discovered to be from the "
                         + NightlyActions.getTownList().get( i ).getAffiliation() + "." );
             }
         }
@@ -50,7 +57,7 @@ public class TownSheriff extends AbstractPlayer {
         for ( int i = 0; i < NightlyActions.getMafiaList().size(); i++ ) {
 
             if ( target.equals( ( NightlyActions.getMafiaList().get( i ) ).getPlayerName() ) ) {
-                System.out.println( target + " was investigated and was discovered to be from the "
+                main.outputText( target + " was investigated and was discovered to be from the "
                         + NightlyActions.getMafiaList().get( i ).getAffiliation() + "." );
             }
         }

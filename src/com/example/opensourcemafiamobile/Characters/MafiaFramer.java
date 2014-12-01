@@ -5,6 +5,13 @@ import java.util.Scanner;
 import com.example.opensourcemafiamobile.*;
 
 public class MafiaFramer extends AbstractPlayer {
+	
+	private MainActivity main;
+
+    // Public getter
+    public MafiaFramer(MainActivity main) {
+        this.main = main;
+    }
 
     public MafiaFramer(String playerName) {
         this.setAffiliation( "Mafia" );
@@ -25,7 +32,7 @@ public class MafiaFramer extends AbstractPlayer {
         String candidateName;
         Scanner in = new Scanner( System.in );
 
-        System.out.println( getPlayerName() + ": Enter name of player to frame." );
+        main.outputText( getPlayerName() + ": Enter name of player to frame." );
         candidateName = in.nextLine();
 
         for ( int i = 0; i < NightlyActions.getTownList().size(); i++ ) {
