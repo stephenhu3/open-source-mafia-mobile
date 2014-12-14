@@ -70,8 +70,9 @@ public abstract class AbstractPlayer extends ActionBarActivity {
 	 */
 	public void setLastWill() {
 //		Scanner in = new Scanner(System.in);
-		main.outputText(getPlayerName() + ": Enter your last will.");
-		lastWill = main.sendMessage((TextView) findViewById(R.id.text_id));
+		main.outputText(": Enter your last will.");
+//		main.outputText(getPlayerName() + ": Enter your last will.");
+//		lastWill = main.sendMessage((TextView) findViewById(R.id.text_id));
 	}
 
 	public void displayLastWill() {
@@ -89,11 +90,11 @@ public abstract class AbstractPlayer extends ActionBarActivity {
 	 */
 	public void voteLynch(String candidateName) {
 
-		for (int i = 0; i < NightlyActions.getPlayerList().size(); i++) {
+		for (int i = 0; i < MainActivity.getPlayerList().size(); i++) {
 
-			if (candidateName.equals((NightlyActions.getPlayerList().get(i))
+			if (candidateName.equals((MainActivity.getPlayerList().get(i))
 					.getPlayerName())) {
-				NightlyActions.getPlayerList().get(i).addToLynchVote();
+				MainActivity.getPlayerList().get(i).addToLynchVote();
 			}
 		}
 	}
@@ -109,21 +110,21 @@ public abstract class AbstractPlayer extends ActionBarActivity {
 	 */
 	public void voteHit(String candidateName) {
 
-		for (int i = 0; i < NightlyActions.getPlayerList().size(); i++) {
+		for (int i = 0; i < MainActivity.getPlayerList().size(); i++) {
 
-			if (candidateName.equals((NightlyActions.getPlayerList().get(i))
+			if (candidateName.equals((MainActivity.getPlayerList().get(i))
 					.getPlayerName())) {
-				NightlyActions.getPlayerList().get(i).addToHitVote();
+				MainActivity.getPlayerList().get(i).addToHitVote();
 			}
 		}
 	}
 
 	public void addToTownList(AbstractPlayer player) {
-		NightlyActions.getTownList().add(player);
+		MainActivity.getTownList().add(player);
 	}
 
 	public void addToMafiaList(AbstractPlayer player) {
-		NightlyActions.getMafiaList().add(player);
+		MainActivity.getMafiaList().add(player);
 	}
 
 	/*
