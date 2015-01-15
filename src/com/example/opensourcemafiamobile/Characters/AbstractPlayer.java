@@ -58,7 +58,10 @@ public abstract class AbstractPlayer extends ActionBarActivity {
 
 	// Get player's selection
 	public String getName() {
-		return main.sendMessage((TextView) findViewById(R.id.text_id));
+	//TODO: get user's input
+		//placeholder:
+		return "placeholder";
+//		return main.sendMessage((TextView) findViewById(R.id.text_id));
 //		Scanner in = new Scanner(System.in);
 //		return in.nextLine();
 	}
@@ -69,10 +72,14 @@ public abstract class AbstractPlayer extends ActionBarActivity {
 	 * @MODIFIES: Set's player's last will (displayed on death)
 	 */
 	public void setLastWill() {
-//		Scanner in = new Scanner(System.in);
-		main.outputText(": Enter your last will.");
-//		main.outputText(getPlayerName() + ": Enter your last will.");
-//		lastWill = main.sendMessage((TextView) findViewById(R.id.text_id));
+		//Scanner in = new Scanner(System.in);
+		main.outputText(getPlayerName() + ": Enter your last will.");
+//		TODO: prompt user for input, current function sendMessage requires field to be prefilled, need to prompt instead
+//		setWill(main.sendMessage((TextView) findViewById(R.id.text_id)));
+	}
+	
+	public void setWill(String will) {
+		this.lastWill = will;
 	}
 
 	public void displayLastWill() {

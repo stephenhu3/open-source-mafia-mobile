@@ -3,12 +3,7 @@ package com.example.opensourcemafiamobile;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.opensourcemafiamobile.Characters.AbstractPlayer;
-//import com.example.opensourcemafiamobile.Characters.MafiaFramer;
-//import com.example.opensourcemafiamobile.Characters.MafiaGodfather;
-//import com.example.opensourcemafiamobile.Characters.MafiaMafioso;
-import com.example.opensourcemafiamobile.Characters.TownDoctor;
-//import com.example.opensourcemafiamobile.Characters.TownSheriff;
+import com.example.opensourcemafiamobile.Characters.*;
 
 import android.support.v7.app.ActionBarActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -28,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
 	public static StringBuilder consoleOutput = new StringBuilder("");
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     
-//    NightlyActions nightly = new NightlyActions(this);
+//    MainActivity nightly = new MainActivity(this);
     TextView textView;
 
 	
@@ -119,12 +114,131 @@ public class MainActivity extends ActionBarActivity {
         day = 0;
         
         
-        // read up on best design pattern for android app
+        // Decide on best design pattern to port from desktop to suit android app
         outputText("Game Started.");
         TownDoctor doctor = new TownDoctor( "Doctor Who", this );
+        TownSheriff sheriff = new TownSheriff( "Sheriff Brady", this );
+	    MafiaMafioso mafioso = new MafiaMafioso( "Mafioso Brando", this );
+	    MafiaGodfather godfather = new MafiaGodfather( "Godfather Pacino", this );
+	    MafiaFramer framer = new MafiaFramer( "Framer Jones", this );
+	    //Added to their respective mafia and town lists by now
+
+	    // Make combined player list
+	    playerList = new ArrayList<AbstractPlayer>();
+	    playerList.addAll( townList );
+	    playerList.addAll( mafiaList );
+	    
+	    for ( day = 1; day <= 10; day++ ) {
+        deadTownCount = 0;
+        deadMafiaCount = 0;
+        outputText( "Day " + day + ":" );
+        for ( int i = 0; i < getTownList().size(); i++ ) {
+            if ( !getTownList().get( i ).isDead() ) {
+                getTownList().get( i ).nightAction();
+                getTownList().get( i ).nightActionString();
+
+                // Vote lynch
+                outputText( getTownList().get( i ).getPlayerName() + ": Who do you vote to lynch?" );
+                getTownList().get( i ).voteLynch( getTownList().get( i ).getName() );
+            } else {
+                if ( !getTownList().get( i ).isWillSet() ) {
+                    getTownList().get( i ).setLastWill();
+                    getTownList().get( i ).displayLastWill();
+                    outputText( getTownList().get( i ).getPlayerName() + " is dead." );
+                }
+                deadTownCount++;
+                if ( deadTownCount >= getTownList().size() ) {
+                	outputText( "Mafia wins." );
+                    return;
+                }
+            }
+
+        }
+
+        for ( int i = 0; i < getMafiaList().size(); i++ ) {
+            if ( !getMafiaList().get( i ).isDead() ) {
+                getMafiaList().get( i ).nightAction();
+                getMafiaList().get( i ).nightActionString();
+
+                // Vote hit
+                outputText( getMafiaList().get( i ).getPlayerName() + ": Who do you vote to hit?" );
+                getMafiaList().get( i ).voteHit( getMafiaList().get( i ).getName() );
+            } else {
+                if ( !getMafiaList().get( i ).isWillSet() ) {
+                    getMafiaList().get( i ).setLastWill();
+                    getMafiaList().get( i ).displayLastWill();
+
+                }
+                deadMafiaCount++;
+                if ( deadMafiaCount >= getMafiaList().size() ) {
+                    outputText( "Town wins." );
+                    return;
+                }
+            }
+
+        }
+//
+//
+//        // Iterate through player list to determine who gets lynched,
+//        // players with equal lynch counts are killed
+//        for ( int i = 0; i < getPlayerList().size(); i++ ) {
+//            if ( getPlayerList().get( i ).getLynchCount() > highestLynchCount ) {
+//                highestLynchCount = getPlayerList().get( i ).getLynchCount();
+//            }
+//        }
+//
+//        for ( int i = 0; i < getPlayerList().size(); i++ ) {
+//            if ( ( highestLynchCount == getPlayerList().get( i ).getLynchCount() )
+//                    && ( getPlayerList().get( i ).getLynchCount() != 0 ) ) {
+//                lynchVictims.add( getPlayerList().get( i ) );
+//            }
+//        }
+//
+//        // Lynch all the victims with the highest lynch count
+//        for ( int i = 0; i < lynchVictims.size(); i++ ) {
+//            if ( !lynchVictims.get( i ).isLynched() ) {
+//                lynchVictims.get( i ).setDead( true );
+//                lynchVictims.get( i ).setLynched( true );
+//                outputText( lynchVictims.get( i ).getPlayerName() + " has been lynched." );
+//            }
+//        }
+//        resetHighestLynchCount();
+//
+//        // Iterate through player list to determine who gets hit, players
+//        // with equal hit counts are killed
+//        for ( int i = 0; i < getPlayerList().size(); i++ ) {
+//            if ( getPlayerList().get( i ).getHitCount() > highestHitCount ) {
+//                highestHitCount = getPlayerList().get( i ).getHitCount();
+//            }
+//        }
+//
+//        for ( int i = 0; i < getPlayerList().size(); i++ ) {
+//            if ( ( highestHitCount == getPlayerList().get( i ).getHitCount() )
+//                    && ( getPlayerList().get( i ).getHitCount() != 0 ) ) {
+//                hitVictims.add( getPlayerList().get( i ) );
+//            }
+//        }
+//
+//        // Hit all the victims with the highest hit count
+//        for ( int i = 0; i < hitVictims.size(); i++ ) {
+//            if ( !hitVictims.get( i ).isHit() ) {
+//                hitVictims.get( i ).setDead( true );
+//                hitVictims.get( i ).setHit( true );
+//                outputText( hitVictims.get( i ).getPlayerName() + " has been hit." );
+//            }
+//        }
+//        resetHighestHitCount();
+//
+//        // Reveal sheriff's investigation results
+//        if ( !sheriff.isDead() ) {
+//            sheriff.investigationResults();
+//        }
+//
+//        // Reset framed status for all players
+//        resetFramed();
+   }
         
-        doctor.setLastWill();
-//        doctor.displayLastWill();
+        
     }
 
     @Override

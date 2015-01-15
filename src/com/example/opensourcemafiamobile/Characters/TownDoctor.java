@@ -2,6 +2,8 @@ package com.example.opensourcemafiamobile.Characters;
 
 import java.util.Scanner;
 
+import android.widget.TextView;
+
 import com.example.opensourcemafiamobile.*;
 
 public class TownDoctor extends AbstractPlayer {
@@ -41,11 +43,11 @@ public class TownDoctor extends AbstractPlayer {
     }
     
     @Override
+    //Experimenting
     public void setLastWill() {
-//		Scanner in = new Scanner(System.in);
 		main.outputText(getPlayerName() + ": Enter your last will.");
-//		TODO: find out how to prompt for user input
-//		lastWill = main.sendMessage((TextView) findViewById(R.id.text_id));
+//		TODO: prompt user for input, current function sendMessage requires field to be prefilled, need to prompt instead
+		setWill(main.sendMessage((TextView) findViewById(R.id.text_id)));
 	}
 
     // Heals
@@ -54,23 +56,25 @@ public class TownDoctor extends AbstractPlayer {
     public void nightAction() {
 
         String candidateName;
-        Scanner in = new Scanner( System.in );
         main.outputText( getPlayerName() + ": Enter name of player to heal." );
-        candidateName = in.nextLine();
-
-        for ( int i = 0; i < MainActivity.getTownList().size(); i++ ) {
-
-            if ( candidateName.equals( ( MainActivity.getTownList().get( i ) ).getPlayerName() ) ) {
-                MainActivity.getTownList().get( i ).setHealed( true );
-            }
-        }
-
-        for ( int i = 0; i < MainActivity.getMafiaList().size(); i++ ) {
-
-            if ( candidateName.equals( ( MainActivity.getMafiaList().get( i ) ).getPlayerName() ) ) {
-                MainActivity.getMafiaList().get( i ).setHealed( true );
-            }
-        }
+//        TODO: get user input, can't use scanner like desktop application
+//        Scanner in = new Scanner( System.in );
+//        
+//        candidateName = in.nextLine();
+//
+//        for ( int i = 0; i < MainActivity.getTownList().size(); i++ ) {
+//
+//            if ( candidateName.equals( ( MainActivity.getTownList().get( i ) ).getPlayerName() ) ) {
+//                MainActivity.getTownList().get( i ).setHealed( true );
+//            }
+//        }
+//
+//        for ( int i = 0; i < MainActivity.getMafiaList().size(); i++ ) {
+//
+//            if ( candidateName.equals( ( MainActivity.getMafiaList().get( i ) ).getPlayerName() ) ) {
+//                MainActivity.getMafiaList().get( i ).setHealed( true );
+//            }
+//        }
     }
 
     @Override
